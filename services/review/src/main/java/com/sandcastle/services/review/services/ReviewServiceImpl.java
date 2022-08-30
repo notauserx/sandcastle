@@ -2,6 +2,7 @@ package com.sandcastle.services.review.services;
 
 import com.sandcastle.api.core.review.Review;
 import com.sandcastle.api.core.review.ReviewService;
+import com.sandcastle.api.exceptions.InvalidInputException;
 import com.sandcastle.common.http.ServiceUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,10 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public List<Review> getReviews(int productId) {
+        if (productId < 1) {
+            throw new InvalidInputException("Invalid productId: " + productId);
+        }
+
         if (productId == 213) {
             LOG.debug("No reviews found for productId: {}", productId);
             return new ArrayList<>();
