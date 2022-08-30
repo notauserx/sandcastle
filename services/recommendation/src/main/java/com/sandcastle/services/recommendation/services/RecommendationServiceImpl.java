@@ -2,6 +2,7 @@ package com.sandcastle.services.recommendation.services;
 
 import com.sandcastle.api.core.recommendation.Recommendation;
 import com.sandcastle.api.core.recommendation.RecommendationService;
+import com.sandcastle.api.exceptions.InvalidInputException;
 import com.sandcastle.common.http.ServiceUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,10 @@ public class RecommendationServiceImpl implements RecommendationService {
 
     @Override
     public List<Recommendation> getRecommendations(int productId) {
+        if (productId < 1) {
+            throw new InvalidInputException("Invalid productId: " + productId);
+        }
+
         if (productId == 113) {
             LOG.debug("No recommendations found for productId: {}", productId);
             return new ArrayList<>();
