@@ -16,3 +16,9 @@ Use the follwing command to build all the services
 ./gradlew build
 ```
 
+# Run the services
+
+To run the product service, run the following command 
+```shell
+java -jar services/product/build/libs/product-0.0.1-SNAPSHOT.jar
+```
