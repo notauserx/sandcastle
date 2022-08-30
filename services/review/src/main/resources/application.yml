@@ -4,4 +4,4 @@ server.error.include-message: always
 logging:
   level:
     root: INFO
-    se.magnus: DEBUG
+    com.sandcastle: DEBUG
