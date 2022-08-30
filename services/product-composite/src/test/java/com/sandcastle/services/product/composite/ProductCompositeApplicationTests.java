@@ -1,4 +1,4 @@
-package com.sandcastle.services.productcomposite;
+package com.sandcastle.services.product.composite;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

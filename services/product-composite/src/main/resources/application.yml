@@ -1,0 +1,18 @@
+server.port: 7000
+server.error.include-message: always
+
+app:
+  product:
+    host: localhost
+    port: 7001
+  recommendation:
+    host: localhost
+    port: 7002
+  review:
+    host: localhost
+    port: 7003
+
+logging:
+  level:
+    root: INFO
+    com.sandcastle: DEBUG
