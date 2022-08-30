@@ -1,5 +1,7 @@
 package com.sandcastle.services.product.services;
 
+import com.sandcastle.api.exceptions.InvalidInputException;
+import com.sandcastle.api.exceptions.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.sandcastle.api.core.product.Product;
@@ -18,6 +20,13 @@ public class ProductServiceImpl implements ProductService {
     }
     @Override
     public Product getProduct(int productId) {
+        if (productId < 1) {
+            throw new InvalidInputException("Invalid productId: " + productId);
+        }
+
+        if (productId == 13) {
+            throw new NotFoundException("No product found for productId: " + productId);
+        }
         return new Product(productId, "name" + productId, 10, serviceUtil.getServiceAddress());
     }
 }
