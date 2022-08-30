@@ -18,7 +18,10 @@ Use the follwing command to build all the services
 
 # Run the services
 
-To run the product service, run the following command 
+To run the any service, run the following command 
 ```shell
 java -jar services/product/build/libs/product-0.0.1-SNAPSHOT.jar
+java -jar services/review/build/libs/review-0.0.1-SNAPSHOT.jar
+java -jar services/recommendation/build/libs/recommendation-0.0.1-SNAPSHOT.jar
+
 ```
