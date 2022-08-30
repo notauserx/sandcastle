@@ -4,6 +4,8 @@ import com.sandcastle.api.composite.product.*;
 import com.sandcastle.api.core.product.Product;
 import com.sandcastle.api.core.recommendation.Recommendation;
 import com.sandcastle.api.core.review.Review;
+import com.sandcastle.api.exceptions.NotFoundException;
+import com.sandcastle.common.http.ServiceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,19 +14,21 @@ import java.util.stream.Collectors;
 
 @RestController
 public class ProductCompositeServiceImpl implements ProductCompositeService {
-    private ProductCompositeIntegration productCompositeIntegration;
+    private final ProductCompositeIntegration productCompositeIntegration;
+    private final ServiceUtil serviceUtil;
 
     @Autowired
-    public ProductCompositeServiceImpl(ProductCompositeIntegration productCompositeIntegration) {
+    public ProductCompositeServiceImpl(ProductCompositeIntegration productCompositeIntegration, ServiceUtil serviceUtil) {
         this.productCompositeIntegration = productCompositeIntegration;
+        this.serviceUtil = serviceUtil;
     }
 
     @Override
     public ProductAggregate getProduct(int productId) {
         Product product = productCompositeIntegration.getProduct(productId);
-        //if (product == null) {
-        //    throw new NotFoundException("No product found for productId: " + productId);
-        //}
+        if (product == null) {
+            throw new NotFoundException("No product found for productId: " + productId);
+        }
 
         List<Recommendation> recommendations = productCompositeIntegration.getRecommendations(productId);
 

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sandcastle.api.core.product.Product;
 import com.sandcastle.api.core.recommendation.Recommendation;
 import com.sandcastle.api.core.review.Review;
+import com.sandcastle.api.exceptions.*;
+import com.sandcastle.common.http.HttpErrorInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,10 +70,10 @@ public class ProductCompositeIntegration {
 
             switch (ex.getStatusCode()) {
                 case NOT_FOUND:
-                    throw ex;//new NotFoundException(getErrorMessage(ex));
+                    throw new NotFoundException(getErrorMessage(ex));
 
                 case UNPROCESSABLE_ENTITY:
-                    throw ex;//new InvalidInputException(getErrorMessage(ex));
+                    throw  new InvalidInputException(getErrorMessage(ex));
 
                 default:
                     LOG.warn("Got an unexpected HTTP error: {}, will rethrow it", ex.getStatusCode());
@@ -81,15 +84,11 @@ public class ProductCompositeIntegration {
     }
 
     private String getErrorMessage(HttpClientErrorException ex) {
-        return ex.getMessage();
-        /*
         try {
             return mapper.readValue(ex.getResponseBodyAsString(), HttpErrorInfo.class).getMessage();
         } catch (IOException ioex) {
             return ex.getMessage();
         }
-
-        */
     }
 
     public List<Recommendation> getRecommendations(int productId) {
