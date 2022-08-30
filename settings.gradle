@@ -1,4 +1,5 @@
 include ':api'
+include ':common'
 include ':services:product'
 include ':services:review'
 include ':services:recommendation'
