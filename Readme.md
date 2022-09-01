@@ -121,10 +121,4 @@ http://localhost:7000/product-composite/1
 ## TODO ::
 
 - Write an overview of the project
-- Disable the creation of the new plain jar file with 
-```
-jar {
-  enabled = false
-}
-```
 - add test-em-all script
