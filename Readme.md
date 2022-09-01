@@ -39,9 +39,20 @@ Stop the services with
 ```shell
 kill $(jobs -p)
 ```
+### Endpoints
+
+
+[Product service](http://localhost:7001/product/1)
+
+[Recommendation service](http://localhost:7002/recommendation?productId=1)
+
+[Review service](http://localhost:7003/review?productId=1)
+
+[Product-composite service](http://localhost:7000/product-composite/1)
 
 # Docker
 
+### Product service
 First build the project using
 ```shell
 ./gradlew :services:product:build
@@ -55,7 +66,7 @@ docker run --rm -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" product
 
 [Browse the endpoint for products](http://localhost:8080/product/1)
 
-### Review
+### Review service
 
 ```shell
 ./gradlew :services:review:build
@@ -68,7 +79,7 @@ docker run --rm -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" review
 [Browse the endpoint for reviews](http://localhost:8080/review?productId=1)
 
 
-### Recommendation
+### Recommendation service
 
 ```shell
 ./gradlew :services:recommendation:build
@@ -82,6 +93,8 @@ docker run --rm -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" recommendation
 [Browse the endpoint for recommendations](http://localhost:8080/recommendation?productId=1)
 
 ### Product composite service
+
+Since this service depends on the other services, make sure they are running or use docker-compose to run all the services.
 
 ```shell
 # build
@@ -109,14 +122,8 @@ docker-compose down
 
 ```
 
-## Endpoints
 
-```
-http://localhost:7001/product/1
-http://localhost:7002/recommendation?productId=1
-http://localhost:7003/review?productId=1
-http://localhost:7000/product-composite/1
-```
+
 
 ## TODO ::
 
