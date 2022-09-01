@@ -40,12 +40,38 @@ Stop the services with
 kill $(jobs -p)
 ```
 
+# Docker
+
+First build the project using
+```shell
+./gradlew :services:product:build
+```
+```shell
+cd services/product
+docker build -t product .
+# run
+docker run --rm -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" product
+```
+
+[Browse the product endpoint to verify](http://localhost:8080/product/1)
+
+### Review
+
+```shell
+./gradlew :services:review:build
+cd services/review
+docker build -t review .
+# run
+docker run --rm -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" review
+
+```
+[Endpoint for reviews](http://localhost:8080/review?productId=1)
 endpoints
 
 ```
 http://localhost:7001/product/1
-http://localhost:7003/review?productId=1
 http://localhost:7002/recommendation?productId=1
+http://localhost:7003/review?productId=1
 http://localhost:7000/product-composite/1
 ```
 
