@@ -53,7 +53,7 @@ docker build -t product .
 docker run --rm -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" product
 ```
 
-[Browse the product endpoint to verify](http://localhost:8080/product/1)
+[Browse the endpoint for products](http://localhost:8080/product/1)
 
 ### Review
 
@@ -65,8 +65,51 @@ docker build -t review .
 docker run --rm -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" review
 
 ```
-[Endpoint for reviews](http://localhost:8080/review?productId=1)
-endpoints
+[Browse the endpoint for reviews](http://localhost:8080/review?productId=1)
+
+
+### Recommendation
+
+```shell
+./gradlew :services:recommendation:build
+cd services/recommendation
+docker build -t recommendation .
+# run
+docker run --rm -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" recommendation
+
+```
+
+[Browse the endpoint for recommendations](http://localhost:8080/recommendation?productId=1)
+
+### Product composite service
+
+```shell
+# build
+./gradlew :services:product-composite:build
+# create the docker image
+cd services/product-composite
+docker build -t product-composite .
+# run the image
+docker run --rm -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" product-composite
+```
+
+[Browse the endpoint for product-composite](http://localhost:8080/product-composite/1)
+
+# Docker compose
+
+```shell
+./gradlew build
+docker-compose build
+docker images | grep sandcastle
+
+# start the services
+docker-compose up -d
+docker-compose logs -f
+docker-compose down
+
+```
+
+## Endpoints
 
 ```
 http://localhost:7001/product/1
