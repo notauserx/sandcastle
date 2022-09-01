@@ -1,1 +1,10 @@
 server.port: 7001
+logging:
+  level:
+    root: INFO
+    com.sandcastle: DEBUG
+
+---
+spring.config.activate.on-profile: docker
+server.port: 8080
+
