@@ -53,15 +53,15 @@ kill $(jobs -p)
 # Docker
 
 ### Product service
-First build the project using
+
 ```shell
+
 ./gradlew :services:product:build
-```
-```shell
 cd services/product
 docker build -t product .
 # run
 docker run --rm -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" product
+
 ```
 
 [Browse the endpoint for products](http://localhost:8080/product/1)
@@ -69,6 +69,7 @@ docker run --rm -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" product
 ### Review service
 
 ```shell
+
 ./gradlew :services:review:build
 cd services/review
 docker build -t review .
@@ -82,10 +83,11 @@ docker run --rm -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" review
 ### Recommendation service
 
 ```shell
+
 ./gradlew :services:recommendation:build
 cd services/recommendation
 docker build -t recommendation .
-# run
+# run the image
 docker run --rm -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" recommendation
 
 ```
@@ -111,6 +113,7 @@ docker run --rm -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" product-composite
 # Docker compose
 
 ```shell
+
 ./gradlew build
 docker-compose build
 docker images | grep sandcastle
@@ -127,5 +130,6 @@ docker-compose down
 
 ## TODO ::
 
-- Write an overview of the project
-- add test-em-all script
+- Write an overview of the project.
+- Add the test-em-all script.
+- Integrate docker-compose into our test script.
