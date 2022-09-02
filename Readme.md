@@ -1,5 +1,9 @@
 # SandCastle
- 
+
+[![Build](https://img.shields.io/badge/Build-passing-blue)](#build)
+[![Test](https://img.shields.io/badge/tests-passing-blue)](#tests)
+[![License](https://img.shields.io/badge/License-MIT-blue)](#license)
+
 Building a sample app with mircoservice by following Microservices with Spring boot and Spring cloud,  a book by Magnus Larsson.
 
 # Overview
@@ -125,7 +129,15 @@ docker-compose down
 
 ```
 
+or use this one-liner
 
+```shell
+./gradlew build && docker-compose build && docker-compose up -d
+```
+
+# Open Api info
+
+[Swagger UI](http://localhost:8080/openapi/swagger-ui.html)
 
 
 ## TODO ::
@@ -133,3 +145,5 @@ docker-compose down
 - Write an overview of the project.
 - Add the test-em-all script.
 - Integrate docker-compose into our test script.
+- Place the configuration of springdoc-openapi
+  in a separate Spring configuration class
