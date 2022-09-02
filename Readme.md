@@ -135,6 +135,10 @@ or use this one-liner
 ./gradlew build && docker-compose build && docker-compose up -d
 ```
 
+# Open Api info
+
+[Swagger UI](http://localhost:8080/openapi/swagger-ui.html)
+
 
 ## TODO ::
 
