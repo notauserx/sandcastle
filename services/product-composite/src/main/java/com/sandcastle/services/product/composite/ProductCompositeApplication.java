@@ -15,6 +15,11 @@ import org.springframework.web.client.RestTemplate;
 @ComponentScan("com.sandcastle")
 public class ProductCompositeApplication {
 
+	@Value("${api.common.version}") String apiVersion;
+	@Value("${api.common.title}") String apiTitle;
+	@Value("${api.common.description}") String apiDescription;
+	@Value("${api.common.license}") String apiLicense;
+	@Value("${api.common.licenseUrl}") String apiLicenseUrl;
 	@Bean
 	RestTemplate restTemplate() {
 		return new RestTemplate();
@@ -24,8 +29,8 @@ public class ProductCompositeApplication {
 	public OpenAPI getOpenApiDocumentation() {
 		return new OpenAPI()
 				.components(new Components())
-				.info(new Info().title("Books API").version("1")
-						.license(new License().name("Apache 2.0").url("http://springdoc.org")));
+				.info(new Info().title(apiTitle).version(apiVersion).description(apiDescription)
+						.license(new License().name(apiLicense).url(apiLicenseUrl)));
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(ProductCompositeApplication.class, args);
