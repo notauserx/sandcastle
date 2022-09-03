@@ -8,7 +8,19 @@ Building a sample app with mircoservice by following Microservices with Spring b
 
 # Overview
 
-... coming soon ...
+### Api tier:
+
+- Open API
+- Api interfaces in the api module
+
+
+### Data tier:
+
+- Spring data
+- mapStruct
+  - Enable annotation processing in intellij 
+
+
 
 # Building the source
 
@@ -53,6 +65,15 @@ kill $(jobs -p)
 [Review service](http://localhost:7003/review?productId=1)
 
 [Product-composite service](http://localhost:7000/product-composite/1)
+
+# Running the tests
+
+This project uses testcontainers. These containers have to be pulled before running the tests. 
+
+```shell
+docker pull testcontainers/ryuk:0.3.1
+docker pull mongo:4.4.2
+```
 
 # Docker
 
