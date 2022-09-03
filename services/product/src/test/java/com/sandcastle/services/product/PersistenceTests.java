@@ -26,7 +26,7 @@ public class PersistenceTests extends MongoDbTestBase{
     }
 
     @Test
-    void canCreateProductAndGetBackTheCreatedProduct() {
+    void canCreateProductAndGeTheNewlyCreatedProductBack() {
         ProductEntity newEntity = new ProductEntity(2, "n", 2);
         repository.save(newEntity);
 
