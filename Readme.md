@@ -75,6 +75,15 @@ docker pull testcontainers/ryuk:0.3.1
 docker pull mongo:4.4.2
 ```
 
+to interact with mongo 
+
+```shell
+docker-compose exec mongodb mongo ––quiet
+```
+
+- Spring data will not create a unique index if there is already data in the db that violates the constraint. 
+  - So make sure to dropDatabase() if there is problem with 
+
 # Docker
 
 ### Product service
