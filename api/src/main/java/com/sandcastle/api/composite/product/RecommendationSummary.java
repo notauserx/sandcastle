@@ -5,10 +5,20 @@ public class RecommendationSummary {
     private final String author;
     private final int rate;
 
-    public RecommendationSummary(int recommendationId, String author, int rate) {
+    private final String content;
+
+    public RecommendationSummary() {
+        this.recommendationId = 0;
+        this.author = null;
+        this.rate = 0;
+        this.content = null;
+    }
+
+    public RecommendationSummary(int recommendationId, String author, int rate, String content) {
         this.recommendationId = recommendationId;
         this.author = author;
         this.rate = rate;
+        this.content = content;
     }
 
     public int getRecommendationId() {
@@ -22,4 +32,5 @@ public class RecommendationSummary {
     public int getRate() {
         return rate;
     }
+    public String getContent() { return content; }
 }

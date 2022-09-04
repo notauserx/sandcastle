@@ -8,7 +8,19 @@ Building a sample app with mircoservice by following Microservices with Spring b
 
 # Overview
 
-... coming soon ...
+### Api tier:
+
+- Open API
+- Api interfaces in the api module
+
+
+### Data tier:
+
+- Spring data
+- mapStruct
+  - Enable annotation processing in intellij 
+
+
 
 # Building the source
 
@@ -53,6 +65,26 @@ kill $(jobs -p)
 [Review service](http://localhost:7003/review?productId=1)
 
 [Product-composite service](http://localhost:7000/product-composite/1)
+
+# Running the tests
+
+This project uses testcontainers. These containers have to be pulled before running the tests. 
+
+```shell
+docker pull testcontainers/ryuk:0.3.1
+docker pull mongo:4.4.2
+docker pull mysql:5.7.32
+```
+
+to interact with mongo / mysql
+
+```shell
+docker-compose exec mongodb mongo ––quiet
+docker-compose exec mysql mysql -uuser -p review-db
+```
+
+- Spring data will not create a unique index if there is already data in the db that violates the constraint. 
+  - So make sure to dropDatabase() if there is problem with 
 
 # Docker
 
