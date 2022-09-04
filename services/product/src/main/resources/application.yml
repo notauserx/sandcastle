@@ -1,5 +1,6 @@
 server.port: 7001
 server.error.include-message: always
+
 spring.data.mongodb:
   host: localhost
   port: 27017
