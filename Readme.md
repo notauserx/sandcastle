@@ -208,9 +208,12 @@ docker run --rm -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" product-composite
   ]
 }
 ```
-2. [Click here](http://localhost:15672/#/queues) to the rabbitmq management portal
-   - username: guest and password: guest to log in
-   - 
+2. [Click here](http://localhost:15672/#/queues) to go to the rabbitmq management portal
+    - username: guest and password: guest to log in
+    - go to the products.auditGroup queue and click GetMessage(s) to see the message in the queue
+3. Verify that the product aggregate can be retrieved at [link](localhost:8080/product-composite/1)
+4. Delete  the product aggreggate curl -X DELETE localhost:8080/product-composite/1
+5. Verify that the [link](localhost:8080/product-composite/1) gives 404
 # Docker compose
 
 ```shell
