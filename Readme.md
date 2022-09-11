@@ -8,10 +8,20 @@ Building a sample app with mircoservice by following Microservices with Spring b
 
 # Overview
 
+SandCastle has four microservices, 
+
+- product-composite
+- product
+- recommendation
+- review
+
+when a user posts a product composite on the /product-composite endpoint,  
+
 ### Api tier:
 
 - Open API
 - Api interfaces in the api module
+
 
 
 ### Data tier:
@@ -146,6 +156,61 @@ docker run --rm -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" product-composite
 
 [Browse the endpoint for product-composite](http://localhost:8080/product-composite/1)
 
+
+## Testing 
+
+1. Create a product composite with the following json in [swagger](http://localhost:8080/openapi/swagger-ui.html)
+
+```json
+{
+  "productId": 1,
+  "name": "product name C",
+  "weight": 300,
+  "recommendations": [
+    {
+      "recommendationId": 1,
+      "author": "author1",
+      "rate": 1,
+      "content": "content 1"
+    },
+    {
+      "recommendationId": 2,
+      "author": "author2",
+      "rate": 2,
+      "content": "content 2"
+    },
+    {
+      "recommendationId": 3,
+      "author": "author3",
+      "rate": 3,
+      "content": "content 3"
+    }
+  ],
+  "reviews": [
+    {
+      "reviewId": 1,
+      "author": "author 1",
+      "subject": "subject1",
+      "content": "content 1"
+    },
+    {
+      "reviewId": 2,
+      "author": "author 2",
+      "subject": "subject2",
+      "content": "content 2"
+    },
+    {
+      "reviewId": 3,
+      "author": "author 3",
+      "subject": "subject3",
+      "content": "content 3"
+    }
+  ]
+}
+```
+2. [Click here](http://localhost:15672/#/queues) to the rabbitmq management portal
+   - username: guest and password: guest to log in
+   - 
 # Docker compose
 
 ```shell
