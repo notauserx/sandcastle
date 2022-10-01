@@ -52,13 +52,17 @@ public class ProductCompositeIntegration
     @Autowired
     public ProductCompositeIntegration(
             @Qualifier("publishEventScheduler") Scheduler publishEventScheduler,
+
             WebClient.Builder webClient,
             ObjectMapper mapper,
             StreamBridge streamBridge,
+
             @Value("${app.product.host}") String productServiceHost,
             @Value("${app.product.port}") int productServicePort,
+
             @Value("${app.recommendation.host}") String recommendationServiceHost,
             @Value("${app.recommendation.port}") int recommendationServicePort,
+
             @Value("${app.review.host}") String reviewServiceHost,
             @Value("${app.review.port}") int reviewServicePort) {
 
@@ -68,9 +72,9 @@ public class ProductCompositeIntegration
         this.mapper = mapper;
         this.streamBridge = streamBridge;
 
-        productServiceUrl = "http://" + productServiceHost + ":" + productServicePort + "/product/";
-        recommendationServiceUrl = "http://" + recommendationServiceHost + ":" + recommendationServicePort + "/recommendation?productId=";
-        reviewServiceUrl = "http://" + reviewServiceHost + ":" + reviewServicePort + "/review?productId=";
+        productServiceUrl        = "http://" + productServiceHost + ":" + productServicePort;
+        recommendationServiceUrl = "http://" + recommendationServiceHost + ":" + recommendationServicePort;
+        reviewServiceUrl         = "http://" + reviewServiceHost + ":" + reviewServicePort;
 
         LOG.info("PRODUCT URL : " + productServiceUrl);
         LOG.info("REVIEW URL : " + reviewServiceUrl);
