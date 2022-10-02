@@ -24,7 +24,8 @@ import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
-@SpringBootTest(webEnvironment = RANDOM_PORT)
+@SpringBootTest(webEnvironment = RANDOM_PORT,
+		properties = {"eureka.client.enabled=false"})
 class RecommendationApplicationTests  extends MongoDbTestBase{
 
 	@Test

@@ -55,16 +55,7 @@ public class ProductCompositeIntegration
 
             WebClient.Builder webClient,
             ObjectMapper mapper,
-            StreamBridge streamBridge,
-
-            @Value("${app.product.host}") String productServiceHost,
-            @Value("${app.product.port}") int productServicePort,
-
-            @Value("${app.recommendation.host}") String recommendationServiceHost,
-            @Value("${app.recommendation.port}") int recommendationServicePort,
-
-            @Value("${app.review.host}") String reviewServiceHost,
-            @Value("${app.review.port}") int reviewServicePort) {
+            StreamBridge streamBridge) {
 
         this.publishEventScheduler = publishEventScheduler;
 
@@ -72,9 +63,9 @@ public class ProductCompositeIntegration
         this.mapper = mapper;
         this.streamBridge = streamBridge;
 
-        productServiceUrl        = "http://" + productServiceHost + ":" + productServicePort;
-        recommendationServiceUrl = "http://" + recommendationServiceHost + ":" + recommendationServicePort;
-        reviewServiceUrl         = "http://" + reviewServiceHost + ":" + reviewServicePort;
+        productServiceUrl        = "http://product";
+        recommendationServiceUrl = "http://recommendation";
+        reviewServiceUrl         = "http://review";
 
         LOG.info("PRODUCT URL : " + productServiceUrl);
         LOG.info("REVIEW URL : " + reviewServiceUrl);

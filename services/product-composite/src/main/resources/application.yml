@@ -2,8 +2,7 @@ springdoc:
   swagger-ui.path: /openapi/swagger-ui.html
   api-docs.path: /openapi/v3/api-docs
   version: 1
-server.port: 7000
-server.error.include-message: always
+
 
 api:
 
@@ -63,16 +62,22 @@ api:
           
           This means that a delete request of a non-existing product will return **200 Ok**.
 
-app:
-  product:
-    host: localhost
-    port: 7001
-  recommendation:
-    host: localhost
-    port: 7002
-  review:
-    host: localhost
-    port: 7003
+server.port: 7000
+server.error.include-message: always
+
+spring.application.name: product-composite
+
+app.eureka-server: localhost
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${app.eureka-server}:8761/eureka/
+    initialInstanceInfoReplicationIntervalSeconds: 5
+    registryFetchIntervalSeconds: 5
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 5
 
 spring.cloud.stream:
   defaultBinder: rabbit
@@ -112,19 +117,12 @@ management.endpoints.web.exposure.include: "*"
 
 ---
 spring.config.activate.on-profile: docker
+
 server.port: 8080
-app:
-  product:
-    host: product
-    port: 8080
-  recommendation:
-    host: recommendation
-    port: 8080
-  review:
-    host: review
-    port: 8080
 
 spring.rabbitmq.host: rabbitmq
+
+app.eureka-server: eureka
 
 spring.cloud.stream.kafka.binder.brokers: kafka
 

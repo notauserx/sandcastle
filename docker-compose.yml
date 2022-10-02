@@ -86,7 +86,7 @@ services:
       retries: 60
 
   eureka:
-    build: spring-cloud/eureka-server
+    build: servers/eureka-server
     #mem_limit: 512m
     ports:
       - "8761:8761"
