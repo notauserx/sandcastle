@@ -10,19 +10,35 @@ Building a sample app with mircoservice by following Microservices with Spring b
 
 SandCastle has four microservices, 
 
-- product-composite
-- product
-- recommendation
-- review
+```text
+ __________________________________________________________________________________
+|                                                           _________________      |
+|                                                          |                 |     |
+|                                          |-------------->|     product     |     |
+|                                          |               |_________________|     |
+|       ____________________               |                _________________      |
+|      |                    |              |               |                 |     |
+|      | product-composite  |--------------|-------------->| recommendation  |     |
+|      |____________________|              |               |_________________|     |
+|                                          |                _________________      |
+|                                          |               |                 |     |
+|                                          |-------------->|     review      |     |
+|                                                          |_________________|     |
+|__________________________________________________________________________________|
+
+
+```
 
 when a user posts a product composite on the /product-composite endpoint,  
+
+- product composite calls product, recommendation and review services
+- aggreges the result
+- used spring cloud with RabbitMQ/Kafka to communicate with other services.
 
 ### Api tier:
 
 - Open API
 - Api interfaces in the api module
-
-
 
 ### Data tier:
 
